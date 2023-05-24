@@ -1,7 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+    id("androidx.navigation.safeargs")
 }
+
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.dagger.hilt.android'
+
+def apikeyPropertiesFile = rootProject.file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
 
 android {
     namespace 'com.forzz.exchangermts'
@@ -15,6 +25,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "EXCHANGE_API", apikeyProperties['EXCHANGE_API'])
     }
 
     buildTypes {
@@ -24,15 +36,25 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
+    }
+    buildFeatures {
+        viewBinding true
     }
 }
 
 dependencies {
+
+    def lifecycle_version = "2.5.0-rc01"
+    def retrofit_version = "2.9.0"
+    def hilt_version = "2.44"
+    def nav_version = "2.5.3"
+    def fragment_version = "1.5.7"
+    def okhttpVersion = "3.14.9"
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -42,5 +64,41 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+    // Hilt-view-model
+    annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0'
+    implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
+
+    // Navigation Compose
+    implementation "androidx.navigation:navigation-compose:$nav_version"
+
+    // Fragment
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
+
+    // RX-Java
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
+
+    // Lifecycle
+    implementation "androidx.activity:activity-ktx:1.7.1"
+
+    // Javax Inject
+    implementation 'javax.inject:javax.inject:1'
+
+    // Okhttp
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
 }
