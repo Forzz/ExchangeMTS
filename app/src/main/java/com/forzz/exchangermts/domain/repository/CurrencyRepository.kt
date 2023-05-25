@@ -5,5 +5,5 @@ import io.reactivex.Single
 
 interface CurrencyRepository {
 
-    fun getCurrencies(apiKey: String, currencies: String?, baseCurrency: String?): Single<Currencies>
+    fun getCurrencies(apiKey: String, currencies: String, baseCurrency: String?): Single<Currencies>
 }

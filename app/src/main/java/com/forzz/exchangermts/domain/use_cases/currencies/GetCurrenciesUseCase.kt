@@ -11,10 +11,10 @@ class GetCurrenciesUseCase @Inject constructor(
 ) : SingleUseCase<Currencies>() {
 
     private lateinit var apiKey: String
-    private var currencies: String? = null
+    private var currencies: String = ""
     private var baseCurrency: String? = "RUB"
 
-    fun saveData(apiKey: String, currencies: String?, baseCurrency: String) {
+    fun saveData(apiKey: String, currencies: String, baseCurrency: String) {
         this.apiKey = apiKey
         this.currencies = currencies
         this.baseCurrency = baseCurrency

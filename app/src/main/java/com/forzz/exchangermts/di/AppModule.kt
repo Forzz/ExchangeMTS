@@ -1,5 +1,6 @@
 package com.forzz.exchangermts.di
 
+import com.forzz.exchangermts.BuildConfig
 import com.forzz.exchangermts.common.Constants
 import com.forzz.exchangermts.data.remote.CurrencyApi
 import com.forzz.exchangermts.data.repository.CurrencyRepositoryImpl
@@ -66,7 +67,13 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideMovieRepository(api: CurrencyApi): CurrencyRepository {
+    fun provideCurrencyRepository(api: CurrencyApi): CurrencyRepository {
         return CurrencyRepositoryImpl(api)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCurrencyApiKey(): String {
+        return BuildConfig.EXCHANGE_API
     }
 }

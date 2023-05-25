@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ExchangerMTS</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_hint">Поиск</string>
+    <string name="currency_name_example">USD</string>
+    <string name="currency_value_example">0.011111</string>
 </resources>

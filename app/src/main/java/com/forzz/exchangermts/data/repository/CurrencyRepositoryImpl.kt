@@ -13,7 +13,7 @@ class CurrencyRepositoryImpl @Inject constructor(
 ) : CurrencyRepository {
     override fun getCurrencies(
         apiKey: String,
-        currencies: String?,
+        currencies: String,
         baseCurrency: String?
     ): Single<Currencies> {
         return api.getCurrencies(apiKey, currencies, baseCurrency)

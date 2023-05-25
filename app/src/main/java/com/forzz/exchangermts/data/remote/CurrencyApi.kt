@@ -7,10 +7,10 @@ import retrofit2.http.Query
 
 interface CurrencyApi {
 
-    @GET()
+    @GET("/v3/latest/")
     fun getCurrencies(
         @Query("apikey") apiKey: String,
-        @Query("currencies") currencies: String?,
+        @Query("currencies") currencies: String,
         @Query("base_currency") baseCurrency: String?
     ): Single<CurrenciesDTO>
 }
