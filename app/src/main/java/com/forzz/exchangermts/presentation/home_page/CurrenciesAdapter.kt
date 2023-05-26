@@ -2,12 +2,16 @@ package com.forzz.exchangermts.presentation.home_page
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.forzz.exchangermts.databinding.CurrencyItemBinding
 import com.forzz.exchangermts.domain.models.Currencies
 import com.forzz.exchangermts.domain.models.Currency
+import java.text.DecimalFormat
 
-class CurrenciesAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CurrenciesAdapter(
+    private val navController: NavController
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val currencies: MutableList<Currency> = ArrayList()
 
@@ -38,7 +42,13 @@ class CurrenciesAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun onBind(currency: Currency) {
             binding.tvCurrencyName.text = currency.code
-            binding.tvCurrencyValue.text = currency.value.toString()
+            val decimalFormat = DecimalFormat("#.######")
+            binding.tvCurrencyValue.text = decimalFormat.format(currency.value)
+
+            itemView.setOnClickListener {
+                val action = HomePageFragmentDirections.actionHomePageFragmentToConverterFragment(currency)
+                navController.navigate(action)
+            }
         }
     }
 }

@@ -9,5 +9,22 @@
         android:id="@+id/homePageFragment"
         android:name="com.forzz.exchangermts.presentation.home_page.HomePageFragment"
         android:label="fragment_home_page"
-        tools:layout="@layout/fragment_home_page" />
+        tools:layout="@layout/fragment_home_page" >
+        <argument
+            android:name="selected_currency"
+            app:argType="com.forzz.exchangermts.domain.models.Currency" />
+        <action
+            android:id="@+id/action_homePageFragment_to_converterFragment"
+            app:destination="@id/converterFragment">
+            <argument
+                android:name="selected_currency"
+                app:argType="com.forzz.exchangermts.domain.models.Currency" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/converterFragment"
+        android:name="com.forzz.exchangermts.presentation.converter.ConverterFragment"
+        android:label="fragment_converter"
+        tools:layout="@layout/fragment_converter" >
+    </fragment>
 </navigation>

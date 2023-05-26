@@ -5,7 +5,7 @@
     style="@style/currency_item_style"
     android:layout_width="160dp"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="12dp">
 
     <TextView
         android:id="@+id/tv_currency_name"

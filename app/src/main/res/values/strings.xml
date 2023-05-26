@@ -5,4 +5,7 @@
     <string name="search_hint">Поиск</string>
     <string name="currency_name_example">USD</string>
     <string name="currency_value_example">0.011111</string>
+    <string name="converter_base_example">RUB</string>
+    <string name="converter_selected_example">AED</string>
+    <string name="description_example">1 RUB = 111 USD</string>
 </resources>
