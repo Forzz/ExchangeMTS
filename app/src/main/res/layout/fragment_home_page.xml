@@ -32,6 +32,7 @@
         android:ems="10"
         android:hint="@string/search_hint"
         android:inputType="text"
+        android:textColor="@color/black"
         android:textColorHint="@color/hint_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
